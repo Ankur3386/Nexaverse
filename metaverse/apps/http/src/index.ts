@@ -1,4 +1,5 @@
 import express, { Router } from 'express'
+import {client} from '@repo/db/client'
 import { router } from './routes/v1';
 const app =express()
 app.use(express.json());

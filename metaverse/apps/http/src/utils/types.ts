@@ -4,7 +4,7 @@ import * as z from 'zod'
 export const signUpSchema=z.object({
     username:z.string().min(3,{ message: "Username shuld atleast be of  3 length" }),
     password:z.string(),
-    type:z.enum(["user","admin"])
+    role:z.enum(["User","Admin"])
 })
 export const signInSchema=z.object({
     username:z.string(),
@@ -59,3 +59,10 @@ export const createMapSchema=z.object({
     })) 
 })
 
+declare global{
+    namespace Express{
+    interface Request{
+      role?:"Admin"|"User";
+      userId?:string
+    }}
+}

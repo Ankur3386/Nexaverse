@@ -106,7 +106,7 @@ describe("User metadata(avatar) update",()=>{
    })
    expect(response.status).toBe(200);
   })
-  test("user can update their avatar as no header provided ",async()=>{
+  test("user cannot update their avatar as no header provided ",async()=>{
      const response = await axios.post(`${Backend_Url}/api/v1/user/metadata`,{
      avatarId
    })
