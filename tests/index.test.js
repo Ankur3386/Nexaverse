@@ -104,7 +104,7 @@ describe("User metadata(avatar) update",()=>{
      "authorization":`Bearer ${token}`
     }
    })
-   expect(response.status).toBe(200);
+    expect(response.status).toBe(200);
   })
   test("user cannot update their avatar as no header provided ",async()=>{
      const response = await axios.post(`${Backend_Url}/api/v1/user/metadata`,{
@@ -113,7 +113,7 @@ describe("User metadata(avatar) update",()=>{
    expect(response.status).toBe(403);
   })
 })
-describe(" User avatar information",()=>{
+describe(" avatar information of User",()=>{
 let token=""
 let avatarId=""
 let userId=""
