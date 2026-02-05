@@ -10,6 +10,11 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "baseline-browser-mapping": "^2.9.19",
     "jest": "^30.2.0"
+  },
+  "dependencies": {
+    "axios": "^1.13.4",
+    "ws": "^8.19.0"
   }
 }

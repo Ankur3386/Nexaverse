@@ -1,8 +1,7 @@
 import {Request,Response, NextFunction } from "express";
 import { createAvatarSchema, createElementSchema, createMapSchema, updateElementSchema } from "../utils/types";
 import { client } from "@repo/db/client";
-import { parse } from "path";
-import { id } from "zod/locales";
+
 
 export const createElement=async(req:Request,res:Response,next:NextFunction)=>{
  const parsedData= createElementSchema.safeParse(req.body)

@@ -3,7 +3,6 @@ import { signInSchema, signUpSchema, updateMetadataSchema } from "../utils/types
 import { client } from "@repo/db/client";
 import bcrypt from  "bcryptjs"
 import  jwt  from "jsonwebtoken";
-import id from "zod/v4/locales/id.js";
 const secret="b7b473dcb0356cc74616cb4486f15b58" ;
 const userSignUp=async(req:Request,res:Response,next:NextFunction)=>{
      const parsedData = signUpSchema.safeParse(req.body)
@@ -119,7 +118,29 @@ try {
 }
 }
 const getOtherUserMetadata=async(req:Request,res:Response,next:NextFunction)=>{
+   const userIds= (req.query.ids ??"[]") as string
+   const userId =userIds.slice(1,userIds.length-1).split(',') ;
+   const metadata= await client.user.findMany({
+    where:{
+        id:{
+            in:userId
+        }
+    },
+      select:{
+            avatar:true,
+            id:true
+        }
+   })
 
+   if(!metadata||metadata.length === 0){
+     return res.status(400).json({message:"error fetching metadata"})
+   }
+   return res.status(200).json({
+    avatars:metadata.map(q=>({
+        userId:q.id,
+        avatarId:q.avatar?.imageUrl
+    }))
+   })
 }
 
 export{
