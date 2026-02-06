@@ -70,7 +70,7 @@ export class User{
                 x:this.x,
                 y:this.y
             },
-            users:RoomManager.getInstance().rooms.get(this.spaceId)?.filter(x=>x.id!=this.id).map(z=>({"id" : z.id})) ?? []
+            users:RoomManager.getInstance().rooms.get(this.spaceId)?.filter(x=>x.id!=this.id).map(z=>({"userId" : z.userId})) ?? []
         }
        })
      RoomManager.getInstance().broadCast(this.spaceId,this,{"type":"user-join",
